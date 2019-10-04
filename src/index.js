@@ -38,13 +38,20 @@ app.get('/workshop/:name', function (req, res) {
     const workshopName = req.params.name
     InMemoryWorkshop.getWorkshopByName(workshopName)
     .then(workshop => {
-        res.render('/workshop', workshop)
+        res.render('workshop', workshop)
     })
     .catch(e =>ejs.send(e.message))
 })
 
 app.post('/remove-workshop', function (req, res) {
-    res.status(500).send('TODO')
+    const initialName = req.body.initialName
+    const name = req.body.name
+    const description = req.body.description
+    InMemoryWorkshop.getWorkshopByName(initialName)
+    InMemoryWorkshop.updateWorkshop(initialName, name, description).then(() => {
+        res.redirect('/')
+    })
+    .catch(e =>ejs.send(e.message))
 })
 
 app.post('/update-workshop', function(req, res) {

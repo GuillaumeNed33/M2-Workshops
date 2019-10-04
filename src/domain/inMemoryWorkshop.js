@@ -40,7 +40,7 @@ function removeWorkshopByName(name) {
     })
 }
 
-function updateWorkshop(name) {
+function updateWorkshop(initialName, name, desc) {
     console.log(name)
     return new Promise((resolve, reject) => {
         reject(new Error('Not implemented'))
