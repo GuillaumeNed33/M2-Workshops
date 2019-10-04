@@ -1,13 +1,13 @@
 
 const express = require('express')
 const app = express()
-const InMemoryWorkshop = require("./inMemoryWorkshop")
+const InMemoryWorkshop = require("./modules/inMemoryWorkshop")
 const path = require("path")
 const ejs = require('ejs')
 // set the view engine to ejs
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '..', '/ejs'));
-app.use(express.static(path.join(__dirname , '..', 'css')));
+app.set('views', path.join(__dirname, './', 'ui'));
+app.use(express.static(path.join(__dirname , './', 'assets/css')));
 
 
 app.get('/', function (req, res) {
@@ -36,7 +36,7 @@ app.get('/workshop/:name', function (req, res) {
     const workshopName = req.params.name
     InMemoryWorkshop.getWorkshopByName(workshopName)
     .then(workshop => {
-        res.render('ejs/workshop', workshop)
+        res.render('/workshop', workshop)
     })
     .catch(e =>ejs.send(e.message))
 })
