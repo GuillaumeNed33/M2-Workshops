@@ -1,18 +1,19 @@
+/* eslint-disable no-undef */
 const express = require('express')
 const app = express()
-const InMemoryWorkshop = require("./domain/inMemoryWorkshop")
-const path = require("path")
+const InMemoryWorkshop = require('./domain/inMemoryWorkshop')
+const path = require('path')
 const ejs = require('ejs')
 // set the view engine to ejs
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, './', 'ui'));
-app.use(express.static(path.join(__dirname , './', 'assets/css')));
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, './', 'ui'))
+app.use(express.static(path.join(__dirname , './', 'assets/css')))
 
 
 app.get('/', function (req, res) {
     InMemoryWorkshop.getWorkshopList()
     .then(workshops => {
-        res.render("index", {
+        res.render('index', {
             workshops: workshops
         })
     })
@@ -41,11 +42,11 @@ app.get('/workshop/:name', function (req, res) {
 })
 
 app.post('/remove-workshop', function (req, res) {
-    res.status(500).send("TODO")
+    res.status(500).send('TODO')
 })
 
 app.post('/update-workshop', function(req, res) {
-    res.status(500).send("TODO")
+    res.status(500).send('TODO')
 })
 
 app.listen(3000, function () {

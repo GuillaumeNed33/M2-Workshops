@@ -13,6 +13,8 @@
         "ecmaVersion": 2018
     },
     "rules": {
-        
+        "semi": ["error", "never"],
+        "quotes": ["error", "single"],
+        "no-path-concat": "off"
     }
 }
