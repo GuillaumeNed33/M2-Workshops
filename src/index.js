@@ -1,7 +1,6 @@
-
 const express = require('express')
 const app = express()
-const InMemoryWorkshop = require("./modules/inMemoryWorkshop")
+const InMemoryWorkshop = require("./domain/inMemoryWorkshop")
 const path = require("path")
 const ejs = require('ejs')
 // set the view engine to ejs
