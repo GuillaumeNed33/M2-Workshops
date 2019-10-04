@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const InMemoryWorkshop = require('./domain/inMemoryWorkshop')
 const path = require('path')
@@ -8,11 +9,12 @@ const ejs = require('ejs')
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, './', 'ui'))
 app.use(express.static(path.join(__dirname , './', 'assets/css')))
-
+app.use(bodyParser())
 
 app.get('/', function (req, res) {
     InMemoryWorkshop.getWorkshopList()
     .then(workshops => {
+        console.log(workshops, 'init')
         res.render('index', {
             workshops: workshops
         })
@@ -27,7 +29,7 @@ app.post('/workshop', function (req, res) {
     const name = req.body.name
     const description = req.body.description
     InMemoryWorkshop.addWorkshop(name, description).then(() => {
-        res.render('index')
+        res.redirect('/')
     })
     .catch(e =>ejs.send(e.message))
 })

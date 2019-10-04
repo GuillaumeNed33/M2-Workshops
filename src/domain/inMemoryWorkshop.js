@@ -1,4 +1,5 @@
-let inMemoryWorkshop = []
+/* eslint-disable no-undef */
+inMemoryWorkshop = []
 
 
 function getWorkshopList() {
