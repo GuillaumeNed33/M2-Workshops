@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +5,15 @@
 </head>
 <body class="container">
 
-<form action="/workshop" method="POST">
+<form action="/update-workshop" method="POST">
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" name="name"  placeholder="Workshop Name" required>
+        <input type="text" class="form-control" name="name" value="<%= workshop.name %>" placeholder="Workshop Name" required>
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <input type="text" class="form-control" name="description" placeholder="Give a description for your workshop" required>
+        <input type="text" class="form-control" name="description" placeholder="Give a description for your workshop" value="<%= workshop.description %>" required>
+        <input type="hidden" name="initialName" value="<%= workshop.name %>" required>
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
     <a type="button" class="btn btn-secondary" href="/">Cancel</a>

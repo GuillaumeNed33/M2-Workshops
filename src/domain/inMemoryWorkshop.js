@@ -13,7 +13,12 @@ function getWorkshopByName(name) {
         if (!name) {
             reject(new Error('name parameter is required'))
         }
-        resolve(inMemoryWorkshop.find(workshop => workshop.name === workshop))
+        const workshop = inMemoryWorkshop.find(workshop => workshop.name === name);
+        if(typeof workshop !== 'undefined') {
+            resolve(workshop)
+        } else {
+            resolve()
+        }
     })
 }
 
@@ -35,16 +40,28 @@ function addWorkshop(name, description) {
 
 function removeWorkshopByName(name) {
     return new Promise((resolve, reject) => {
-        console.log(name)
-        reject(new Error('Not implemented'))
+        const index = inMemoryWorkshop.findIndex(workshop => workshop.name === name);
+        if(index !== -1) {
+            inMemoryWorkshop.splice(index,1)
+            resolve()
+        } else {
+            return new Promise((resolve, reject) => {
+                reject(new Error('Initial Workshop not found'))
+            })
+        }
     })
 }
 
-function updateWorkshop(initialName, name, desc) {
-    console.log(name)
-    return new Promise((resolve, reject) => {
-        reject(new Error('Not implemented'))
-    })
+async function updateWorkshop(initialName, name, desc) {
+    const index = inMemoryWorkshop.findIndex(workshop => workshop.name === initialName);
+    if(index !== -1) {
+        await removeWorkshopByName(initialName)
+        return addWorkshop(name, desc)
+    } else {
+        return new Promise((resolve, reject) => {
+            reject(new Error('Initial Workshop not found'))
+        })
+    }
 }
 
 module.exports = {
