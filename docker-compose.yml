@@ -1,0 +1,17 @@
+version: '2.2'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "3000:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+      - DEFAULT_HOST=whoami.app
+
+  whoami:
+    image: jwilder/whoami
+    scale: 10
+    environment:
+      - VIRTUAL_HOST=whoami.app

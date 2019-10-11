@@ -6,17 +6,20 @@
 </head>
 <body class="container">
 
-<form action="/">
+<form action="/workshop" method="POST">
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name"  placeholder="Workshop Name" required>
+        <input type="text" class="form-control" name="name"  placeholder="Workshop Name" required>
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <input type="text" class="form-control" id="description" placeholder="Give a description for your workshop" required>
+        <input type="text" class="form-control" name="description" placeholder="Give a description for your workshop" required>
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
     <a type="button" class="btn btn-secondary" href="/">Cancel</a>
+    <% if (locals.error) { %>
+        <br/><p style="color: #990105">An error occured.</p>
+    <% } %>
 </form>
 
 <footer>

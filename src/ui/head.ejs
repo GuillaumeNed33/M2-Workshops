@@ -1,0 +1,13 @@
+<meta charset="UTF-8">
+<title>Workshops</title>
+
+<!-- CSS (load bootstrap from a CDN) -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script>
+  function openDeleteDialog(name) {
+    const r = confirm("Delete '"+ name +"'. Are you sure ?");
+    if (r) {
+      document.location.href = '/remove-workshop/' + name;
+    }
+  }
+</script>
