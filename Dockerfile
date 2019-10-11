@@ -7,4 +7,4 @@ RUN git clone https://github.com/GuillaumeNed33/M2-Workshops.git . \
 
 EXPOSE 3000
 
-CMD [ "node", "js/index.js" ]
+CMD [ "npm", "start" ]
